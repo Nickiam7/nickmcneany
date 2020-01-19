@@ -16,6 +16,13 @@ exports.createPages = async ({ graphql, actions }) => {
   // from the fetched data that you can run queries against.
   const result = await graphql(`
     {
+      wordpressPage(title: {eq: "Welcome"}) {
+        id
+        title
+        content
+        slug
+        link
+      }  
       allWordpressPage {
         edges {
           node {
@@ -53,8 +60,14 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Access query results via object destructuring
-  const { allWordpressPage, allWordpressPost } = result.data
-
+  const { wordpressPage, allWordpressPage, allWordpressPost } = result.data
+  // Creat Home page
+  const pageIndexTemplate = path.resolve(`./src/templates/index.js`)
+  createPage({
+      path: `/`,
+      component: slash(pageIndexTemplate),
+      context: wordpressPage
+  })
   // Create Page pages.
   const pageTemplate = path.resolve(`./src/templates/page.js`)
   // We want to create a detailed page for each page node.
