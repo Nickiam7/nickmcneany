@@ -23,7 +23,7 @@ exports.createPages = async ({ graphql, actions }) => {
         slug
         link
       }  
-      allWordpressPage {
+      allWordpressPage(filter: {title: {ne: "Welcome"}}) {
         edges {
           node {
             id
