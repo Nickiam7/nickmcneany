@@ -16,14 +16,14 @@ exports.createPages = async ({ graphql, actions }) => {
   // from the fetched data that you can run queries against.
   const result = await graphql(`
     {
-      wordpressPage(title: {eq: "Welcome"}) {
+      wordpressPage(title: {eq: "Home"}) {
         id
         title
         content
         slug
         link
       }  
-      allWordpressPage(filter: {title: {ne: "Welcome"}}) {
+      allWordpressPage(filter: {title: {ne: "Home"}}) {
         edges {
           node {
             id
