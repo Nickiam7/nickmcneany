@@ -1,10 +1,30 @@
 import React from 'react';
-import {graphql, StaticQuery} from 'gatsby';
+import {graphql, StaticQuery, Link} from 'gatsby';
 
-const MainMenu = () => {
-    <div>
-        Main Menu       
-    </div>
-}
+const MainMenu = () => (
+    <StaticQuery query={graphql`
+    {
+        allWordpressWpApiMenusMenusItems(filter: {name: {eq: "main"}}){
+            edges{
+                node{
+                    items{
+                        title
+                        object_slug
+                        object_id
+                    }
+                }
+            }
+        }
+    }
+    `} render={props => (
+        <div>
+            {props.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(item => (
+                <Link to={item.object_slug} key={item.object_id}>
+                    {item.title}
+                </Link>
+            ))}
+        </div>
+    )} />             
+);
 
 export default MainMenu;
