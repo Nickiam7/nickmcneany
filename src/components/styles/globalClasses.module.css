@@ -1,0 +1,97 @@
+.logo {
+    width: 75px;
+    font-size: 60px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -17px;
+    color: #225596;
+    background:
+    radial-gradient(circle at 49% 59%, rgba(113, 113, 113,0.05) 0%, rgba(113, 113, 113,0.05) 50%,rgba(240, 240, 240,0.05) 50%, rgba(240, 240, 240,0.05) 100%),
+    radial-gradient(circle at 16% 86%, rgba(118, 118, 118,0.05) 0%, rgba(118, 118, 118,0.05) 50%,rgba(207, 207, 207,0.05) 50%, rgba(207, 207, 207,0.05) 100%),
+    radial-gradient(circle at 32% 12%, rgba(229, 229, 229,0.05) 0%, rgba(229, 229, 229,0.05) 50%,rgba(101, 101, 101,0.05) 50%, rgba(101, 101, 101,0.05) 100%),
+    linear-gradient(252deg, rgb(33, 84, 149),rgb(117, 220, 202));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: auto;
+    display: block;
+}
+@media(min-width: 768px) {
+    .logo {
+        margin: 0;
+    }    
+}
+.menu {
+    width: 100%;
+}
+@media(min-width: 768px) {
+    .menu {
+        width: 90%;
+    }    
+}
+.dFlex {
+    display: flex;
+}
+.dBlock {
+    display: block;
+}
+.dInlinebBock {
+    display: inline-block;
+}
+.justifySpaceBetween {
+    justify-content: space-between;
+}
+.flexDirectionColumnRow {
+    flex-direction: column;
+}
+@media(min-width: 768px) {
+    .flexDirectionColumnRow {
+        flex-direction: row;
+    }    
+}
+.flexDirectionRow {
+    flex-direction: row;
+}
+.flexDirectionColumn {
+    flex-direction: column;
+}
+.introGradient {
+    background-color: #3e6a9d;
+    background-image:
+        radial-gradient(circle at 32% 12%, rgba(229, 229, 229,0.05) 0%, rgba(229, 229, 229,0.05) 50%,rgba(101, 101, 101,0.05) 50%, rgba(101, 101, 101,0.05) 100%),
+        radial-gradient(circle at 49% 59%, rgba(113, 113, 113,0.05) 0%, rgba(113, 113, 113,0.05) 50%,rgba(240, 240, 240,0.05) 50%, rgba(240, 240, 240,0.05) 100%),
+        radial-gradient(circle at 16% 86%, rgba(118, 118, 118,0.05) 0%, rgba(118, 118, 118,0.05) 50%,rgba(207, 207, 207,0.05) 50%, rgba(207, 207, 207,0.05) 100%),
+        linear-gradient(252deg, rgb(33, 84, 149),rgb(117, 220, 202))
+}
+.header__intro {
+    color: #ffffff;
+    font-size: calc(1vw + 1rem);
+    margin-bottom: 4rem;
+}
+/* Grid */
+.col_1_2,
+.col_1_3,
+.col_2_3 {
+    width: 100%;   
+}
+@media(min-width: 768px) {
+    .col_1_2 {
+        width: 50%;
+    }
+    .col_1_3 {
+        width: 33.33%;
+    }
+    .col_2_3 {
+        width: 66.66%;
+    }
+}
+/* padding */
+.pyHeader {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+@media(min-width: 768px) {
+    .pyHeader {
+        padding-left: 5rem !important;
+        padding-right: 5rem !important;
+    }
+}
