@@ -23,18 +23,28 @@ const MenuItem = styled(Link)`
     margin-left: 0;
     margin-right: 0;
     &:hover {
-        text-decoration: underline;
+        text-decoration: underline;        
         background:
-        radial-gradient(circle at 49% 59%, rgba(113, 113, 113,0.05) 0%, rgba(113, 113, 113,0.05) 50%,rgba(240, 240, 240,0.05) 50%, rgba(240, 240, 240,0.05) 100%),
-        radial-gradient(circle at 16% 86%, rgba(118, 118, 118,0.05) 0%, rgba(118, 118, 118,0.05) 50%,rgba(207, 207, 207,0.05) 50%, rgba(207, 207, 207,0.05) 100%),
-        radial-gradient(circle at 32% 12%, rgba(229, 229, 229,0.05) 0%, rgba(229, 229, 229,0.05) 50%,rgba(101, 101, 101,0.05) 50%, rgba(101, 101, 101,0.05) 100%),
-        linear-gradient(252deg, rgb(33, 84, 149),rgb(117, 220, 202));
+            radial-gradient(circle at 49% 59%, rgba(113, 113, 113,0.05) 0%, rgba(113, 113, 113,0.05) 50%,rgba(240, 240, 240,0.05) 50%, rgba(240, 240, 240,0.05) 100%),
+            radial-gradient(circle at 16% 86%, rgba(118, 118, 118,0.05) 0%, rgba(118, 118, 118,0.05) 50%,rgba(207, 207, 207,0.05) 50%, rgba(207, 207, 207,0.05) 100%),
+            radial-gradient(circle at 32% 12%, rgba(229, 229, 229,0.05) 0%, rgba(229, 229, 229,0.05) 50%,rgba(101, 101, 101,0.05) 50%, rgba(101, 101, 101,0.05) 100%),
+            linear-gradient(252deg, rgb(33, 84, 149),rgb(117, 220, 202));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
     @media(min-width: 768px) {
         margin-left: 25px;
         margin-right: 25px;
+    }
+    &[aria-current] {
+        background:
+            radial-gradient(circle at 49% 59%, rgba(113, 113, 113,0.05) 0%, rgba(113, 113, 113,0.05) 50%,rgba(240, 240, 240,0.05) 50%, rgba(240, 240, 240,0.05) 100%),
+            radial-gradient(circle at 16% 86%, rgba(118, 118, 118,0.05) 0%, rgba(118, 118, 118,0.05) 50%,rgba(207, 207, 207,0.05) 50%, rgba(207, 207, 207,0.05) 100%),
+            radial-gradient(circle at 32% 12%, rgba(229, 229, 229,0.05) 0%, rgba(229, 229, 229,0.05) 50%,rgba(101, 101, 101,0.05) 50%, rgba(101, 101, 101,0.05) 100%),
+            linear-gradient(252deg, rgb(33, 84, 149),rgb(117, 220, 202));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        box-shadow: 0 2px 0 rgb(33, 84, 149);
     }
 `
 
