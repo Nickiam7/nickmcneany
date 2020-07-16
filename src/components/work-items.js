@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql, StaticQuery, Link} from 'gatsby';
+import { graphql, StaticQuery, Link } from 'gatsby';
 
 const WorkItems = () => {
     return(
@@ -20,9 +20,9 @@ const WorkItems = () => {
                 }
             }
         }
-        `} render={props => props.allWordpressWpWork.edges.map(workItem => (
+        `} render={data => data.allWordpressWpWork.edges.map(workItem => (
             <div key={workItem.node.id}>
-                <h1>{workItem.node.title}</h1>
+                <h2>{workItem.node.title}</h2>                
                 <img src={workItem.node.featured_media.source_url} width="25%" alt={workItem.node.title} />
                 <div dangerouslySetInnerHTML={{__html: workItem.node.excerpt}} />
                 <Link to={`/work/${workItem.node.slug}`}>

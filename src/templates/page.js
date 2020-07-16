@@ -1,11 +1,9 @@
 import React from 'react';
-import Layout from '../components/Layout';
-import WorkItems from '../components/work.js'
+import Layout from '../components/layout';
 
-export default ({pageContext}) => (
+export default ({ pageContext }) => (
     <Layout>
         <h1>{pageContext.title}</h1>
         <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
-        <WorkItems />
     </Layout>
 )

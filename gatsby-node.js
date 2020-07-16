@@ -1,38 +1,66 @@
 const path = require(`path`)
 const slash = require(`slash`)
 
-// Implement the Gatsby API “createPages”. This is
-// called after the Gatsby bootstrap is finished so you have
-// access to any information necessary to programmatically
-// create pages.
-// Will create pages for WordPress pages (route : /{slug})
-// Will create pages for WordPress posts (route : /post/{slug})
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
+  
+  createRedirect({ 
+    fromPath: '/home/', 
+    toPath: '/', 
+    redirectInBrowser: true, 
+    isPermanent: true 
+  })
 
-  // The “graphql” function allows us to run arbitrary
-  // queries against the local Gatsby GraphQL schema. Think of
-  // it like the site has a built-in database constructed
-  // from the fetched data that you can run queries against.
+  createRedirect({ 
+    fromPath: '/home', 
+    toPath: '/', 
+    redirectInBrowser: true, 
+    isPermanent: true 
+  })
+
   const result = await graphql(`
     {
-      wordpressPage(title: {eq: "Home"}) {
+      home: wordpressPage(slug: {eq: "home"}) {
         id
         title
         content
         slug
         link
+        featured_media {
+          source_url
+        }
+        acf {
+          heading
+          intro
+          outro
+          skills_view {
+            heading
+            intro
+            content
+          }
+        }
+      }
+      work: wordpressPage(slug: {eq: "work"}) {
+        id
+        title
+        content
+        slug
+        link
+        featured_media {
+          source_url
+        }
       }  
-      allWordpressPage(filter: {title: {ne: "Home"}}) {
+      allWordpressPage(filter: {slug: {ne: "work"}}) {
         edges {
           node {
             id
             title
             content
-            link            
-            status
-            template
             slug
+            link
+            featured_media {
+              source_url
+            }
           }
         }
       }
@@ -51,53 +79,58 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allWordpressWpWork {
+        edges {
+          node {
+            id
+            slug
+            title
+            excerpt
+            content
+            template
+            featured_media {
+                source_url
+            }
+          }
+        }
+      }
     }
   `)
 
-  // Check for any errors
   if (result.errors) {
     throw new Error(result.errors)
   }
 
-  // Access query results via object destructuring
-  const { wordpressPage, allWordpressPage, allWordpressPost } = result.data
-  // Creat Home page
+  const { home, work, allWordpressPage, allWordpressWpWork, allWordpressPost } = result.data
+
   const pageIndexTemplate = path.resolve(`./src/templates/index.js`)
   createPage({
       path: `/`,
       component: slash(pageIndexTemplate),
-      context: wordpressPage
+      context: home
   })
-  // Create Page pages.
+
+  const pageWorkTemplate = path.resolve(`./src/templates/work.js`)
+  createPage({
+      path: `/work`,
+      component: slash(pageWorkTemplate),
+      context: work
+  })
+  
   const pageTemplate = path.resolve(`./src/templates/page.js`)
-  // We want to create a detailed page for each page node.
-  // The path field contains the relative original WordPress link
-  // and we use it for the slug to preserve url structure.
-  // The Page ID is prefixed with 'PAGE_'
   allWordpressPage.edges.forEach(edge => {
-    // Gatsby uses Redux to manage its internal state.
-    // Plugins and sites can use functions like "createPage"
-    // to interact with Gatsby.
     createPage({
-      // Each page is required to have a `path` as well
-      // as a template component. The `context` is
-      // optional but is often necessary so the template
-      // can query data specific to each page.
       path: `/${edge.node.slug}/`,
       component: slash(pageTemplate),
       context: edge.node      
     })
   })
 
-  const postTemplate = path.resolve(`./src/templates/post.js`)
-  // We want to create a detailed page for each post node.
-  // The path field stems from the original WordPress link
-  // and we use it for the slug to preserve url structure.
-  // The Post ID is prefixed with 'POST_'
-  allWordpressPost.edges.forEach(edge => {
+  const postWorkSingleTemplate = path.resolve(`./src/templates/work-single.js`)
+  allWordpressWpWork.edges.forEach(edge => {
     createPage({
-      path: `/blog/${edge.node.slug}/`,
-      component: slash(postTemplate),
+      path: `/work/${edge.node.slug}/`,
+      component: slash(postWorkSingleTemplate),
       context: edge.node
     })
   })

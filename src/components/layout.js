@@ -14,8 +14,8 @@ import GlobalStyles from './styles/global';
 const Layout = ({ children }) => (
   <div>
     <GlobalStyles />
-    <MainMenu />
-    {children}
+    <MainMenu />    
+    {children}    
   </div>
 )
 
