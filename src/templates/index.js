@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Layout from '../components/layout';
+import Bucket from '../components/bucket';
 
 import {
     Container,
@@ -33,15 +34,12 @@ export default ({ pageContext }) => (
                 <p dangerouslySetInnerHTML={{__html: pageContext.acf.intro}} />
                 <Row className="jc-between">
                     {pageContext.acf.skills_view.map(skill =>
-                        <div className='stack' key={skill.heading}>
-                            <div className='stack__header'>
-                                <h3>{skill.heading}</h3>
-                                <p className='header-intro' dangerouslySetInnerHTML={{__html: skill.intro}} />                            
-                            </div>
-                            <div className='stack__body'>
-                                <p>{skill.content}</p>
-                            </div>
-                        </div> 
+                        <Bucket 
+                            key={skill.heading}
+                            skillHeading={skill.heading}
+                            skillIntro={skill.intro}
+                            skillContent={skill.content}
+                        />
                     )}
                 </Row>                
             </Container>
