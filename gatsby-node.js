@@ -38,6 +38,11 @@ exports.createPages = async ({ graphql, actions }) => {
             intro
             content
           }
+          principles {
+            principle
+            content
+          }
+          heading_intro
         }
       }
       work: wordpressPage(slug: {eq: "work"}) {

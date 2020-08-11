@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, StaticQuery, Link } from 'gatsby';
 
 import { Container, Row, Col6 } from '../components/styles/global';
+import CtaButton from '../components/cta-button';
 
 import styled from 'styled-components';
 
@@ -41,14 +42,18 @@ const MainMenu = () => (
                         </div>
                         <div className='nav__nav'>
                             {data.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(item => (
-                                <NavLink to={item.object_slug} key={item.object_id}>
+                                <NavLink to={`/${item.object_slug}`} key={item.object_id}>
                                     {item.title}
                                 </NavLink>
                             ))}    
                         </div>
                     </Col6>
-                    <Col6 className='nav__nav'>
-                        <p>Hi there!</p>
+                    <Col6 className='nav__nav jc-end'>
+                        <CtaButton 
+                            title='Contact Me'
+                            url='/contact'
+                            modifier='header-cta'
+                        />
                     </Col6>
                 </Row>
             </Container>            
